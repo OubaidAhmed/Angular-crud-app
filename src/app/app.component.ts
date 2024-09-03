@@ -1,3 +1,111 @@
+// import { CommonModule } from '@angular/common';
+// import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+// import { FormsModule } from '@angular/forms';
+// import { RouterOutlet } from '@angular/router';
+
+// @Component({
+//   selector: 'app-root',
+//   standalone: true,
+//   imports: [RouterOutlet, FormsModule],
+//   templateUrl: './app.component.html',
+//   styleUrl: './app.component.css'
+// })
+// export class AppComponent implements OnInit {
+//   @ViewChild('myModal') model: ElementRef | undefined;
+//   studentObj: Student = new Student();
+//   studentList: Student[] = [];
+//   title: any;
+
+//   ngOnInit(): void {
+//     const localData = localStorage.getItem("angular17crud");
+//     if (localData != null) {
+//       this.studentList = JSON.parse(localData)
+//     }
+//   }
+
+//   openModel() {
+
+//     const model = document.getElementById("myModal");
+//     if (model != null) {
+//       model.style.display = 'block'
+//     }
+//   }
+
+//   closeModel() {
+//     this.studentObj = new Student();
+//     if (this.model != null) {
+//       this.model.nativeElement.style.display = 'none';
+//     }
+//   }
+
+//   onDelete(item: Student) {
+//     const isDelet = confirm("Are you sure want to Delete");
+//     if (isDelet) {
+//       const currentRecord = this.studentList.findIndex(m => m.id === this.studentObj.id);
+//       this.studentList.splice(currentRecord, 1);
+//       localStorage.setItem('angular17crud', JSON.stringify(this.studentList));
+//     }
+//   }
+//   onEdit(item: Student) {
+//     this.studentObj = item;
+//     this.openModel();
+//   }
+
+//   updateStud() {
+//     const currentRecord = this.studentList.find(m => m.id === this.studentObj.id);
+//     if (currentRecord != undefined) {
+//       currentRecord.name = this.studentObj.name;
+//       currentRecord.address = this.studentObj.address;
+//       currentRecord.mobileNo = this.studentObj.mobileNo;
+//     };
+//     localStorage.setItem('angular17crud', JSON.stringify(this.studentList));
+//     this.closeModel()
+//   }
+//   saveStudent() {
+//     debugger;
+//     const isLocalPresent = localStorage.getItem("angular17crud");
+//     if (isLocalPresent != null) {
+
+//       const oldArray = JSON.parse(isLocalPresent);
+//       this.studentObj.id = oldArray.length + 1;
+//       oldArray.push(this.studentObj);
+//       this.studentList = oldArray;
+//       localStorage.setItem('angular17crud', JSON.stringify(oldArray));
+//     } else {
+//       const newArr = [];
+//       newArr.push(this.studentObj);
+//       this.studentObj.id = 1;
+//       this.studentList = newArr;
+//       localStorage.setItem('angular17crud', JSON.stringify(newArr));
+//     }
+//     this.closeModel()
+//   }
+// }
+
+
+// export class Student {
+//   id: number;
+//   name: string;
+//   mobileNo: string;
+//   email: string;
+//   city: string;
+//   state: string;
+//   pincode: string;
+//   address: string;
+
+//   constructor() {
+//     this.id = 0;
+//     this.address = '';
+//     this.city = '';
+//     this.email = '';
+//     this.mobileNo = '';
+//     this.name = '';
+//     this.state = '';
+//     this.pincode = '';
+//   }
+
+// }
+
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -12,19 +120,18 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   @ViewChild('myModal') model: ElementRef | undefined;
-  studentObj: Student = new Student();
-  studentList: Student[] = [];
+  recordkeeperObj: Recordkeeper = new Recordkeeper();
+  recordkeeperList: Recordkeeper[] = [];
   title: any;
 
   ngOnInit(): void {
     const localData = localStorage.getItem("angular17crud");
     if (localData != null) {
-      this.studentList = JSON.parse(localData)
+      this.recordkeeperList = JSON.parse(localData)
     }
   }
 
   openModel() {
-
     const model = document.getElementById("myModal");
     if (model != null) {
       model.style.display = 'block'
@@ -32,58 +139,58 @@ export class AppComponent implements OnInit {
   }
 
   closeModel() {
-    this.studentObj = new Student();
+    this.recordkeeperObj = new Recordkeeper();
     if (this.model != null) {
       this.model.nativeElement.style.display = 'none';
     }
   }
 
-  onDelete(item: Student) {
+  onDelete(item: Recordkeeper) {
     const isDelet = confirm("Are you sure want to Delete");
     if (isDelet) {
-      const currentRecord = this.studentList.findIndex(m => m.id === this.studentObj.id);
-      this.studentList.splice(currentRecord, 1);
-      localStorage.setItem('angular17crud', JSON.stringify(this.studentList));
+      const currentRecord = this.recordkeeperList.findIndex(m => m.id === this.recordkeeperObj.id);
+      this.recordkeeperList.splice(currentRecord, 1);
+      localStorage.setItem('angular17crud', JSON.stringify(this.recordkeeperList));
     }
   }
-  onEdit(item: Student) {
-    this.studentObj = item;
+
+  onEdit(item: Recordkeeper) {
+    this.recordkeeperObj = item;
     this.openModel();
   }
 
-  updateStud() {
-    const currentRecord = this.studentList.find(m => m.id === this.studentObj.id);
+  updateRecordkeeper() {
+    const currentRecord = this.recordkeeperList.find(m => m.id === this.recordkeeperObj.id);
     if (currentRecord != undefined) {
-      currentRecord.name = this.studentObj.name;
-      currentRecord.address = this.studentObj.address;
-      currentRecord.mobileNo = this.studentObj.mobileNo;
+      currentRecord.name = this.recordkeeperObj.name;
+      currentRecord.address = this.recordkeeperObj.address;
+      currentRecord.mobileNo = this.recordkeeperObj.mobileNo;
     };
-    localStorage.setItem('angular17crud', JSON.stringify(this.studentList));
-    this.closeModel()
+    localStorage.setItem('angular17crud', JSON.stringify(this.recordkeeperList));
+    this.closeModel();
   }
-  saveStudent() {
+
+  saveRecordkeeper() {
     debugger;
     const isLocalPresent = localStorage.getItem("angular17crud");
     if (isLocalPresent != null) {
-
       const oldArray = JSON.parse(isLocalPresent);
-      this.studentObj.id = oldArray.length + 1;
-      oldArray.push(this.studentObj);
-      this.studentList = oldArray;
+      this.recordkeeperObj.id = oldArray.length + 1;
+      oldArray.push(this.recordkeeperObj);
+      this.recordkeeperList = oldArray;
       localStorage.setItem('angular17crud', JSON.stringify(oldArray));
     } else {
       const newArr = [];
-      newArr.push(this.studentObj);
-      this.studentObj.id = 1;
-      this.studentList = newArr;
+      newArr.push(this.recordkeeperObj);
+      this.recordkeeperObj.id = 1;
+      this.recordkeeperList = newArr;
       localStorage.setItem('angular17crud', JSON.stringify(newArr));
     }
-    this.closeModel()
+    this.closeModel();
   }
 }
 
-
-export class Student {
+export class Recordkeeper {
   id: number;
   name: string;
   mobileNo: string;
@@ -103,5 +210,4 @@ export class Student {
     this.state = '';
     this.pincode = '';
   }
-
 }
